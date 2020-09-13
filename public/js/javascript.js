@@ -397,6 +397,28 @@ class Model {
     })
   }
   
+  getData(){
+    fetch('/cities/all').then((response) => {  
+    if (response.status !== 200) {  
+      console.log('Looks like there was a problem. Status Code: ' + 
+        response.status);  
+    }else{
+     return response.json()
+    }
+    })
+    .then(data =>{
+      if(data.length !== 0){
+        this.makeRequestMongobd(data);
+      }else{
+        console.log('Нет данных в БД');
+      }   
+    })
+    .catch((e) => {
+      console.log('Error: ' + e.message);
+      console.log(e.response);
+  }); 
+  }
+
   getIdObjTest(index){
     fetch('/cities').then((response) => {  
     if (response.status !== 200) {  
