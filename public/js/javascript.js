@@ -287,7 +287,31 @@ class Controller {
         }
         this.addFormView.cleen();
   }  
-  
+  success(position) { 
+          const latitude  = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          this.addCityWeatherView.status.textContent = '';
+          this.model.makeRequestGeoCity(latitude,longitude);
+  }
+  testGeolocation(){
+        if (!navigator.geolocation) {
+          this.addCityWeatherView.status.textContent = 'Geolocation не поддерживается вашим браузером';
+        } else {
+          this.addCityWeatherView.status.textContent = 'Определение местоположения…';
+          navigator.geolocation.getCurrentPosition(this.success, this.error);
+        }
+  }
+  error() {
+        this.addCityWeatherView.status.textContent = 'Невозможно получить ваше местоположение';
+    }
+  getCours(){
+        let interval = 1000 * 60 * 60;
+
+        this.model.makeRequestCourse();
+        setInterval(() => this.addCoursView.cleen(), interval);
+        setInterval(() => this.model.makeRequestCourse(), interval);
+  }
 }
 
 class Model {
