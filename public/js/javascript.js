@@ -384,7 +384,18 @@ class Model {
       
     })
   }
-  
+  putCity(value,id){
+   
+    $.ajax({
+      url: "/cities/"+id,
+      contentType: "application/json",
+      method: "PUT",
+      data: JSON.stringify({
+        cityName: value,
+      })
+      
+    })
+  }
   
   getData(){
     fetch('/cities/all').then((response) => {  
