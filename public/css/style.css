@@ -45,9 +45,9 @@ button:focus {
   #add{
     margin: 0 auto;
     width: 80%;
+    min-height: 80vh;
   }
   ul{
-    min-height: 35vw;
     padding: 0;
   }
   .list{
@@ -121,6 +121,7 @@ button:focus {
       align-items: center;
       margin: 0 auto;
       width: 80%;
+      min-height: 20vh;
   }
   .divCity span {
     padding-left: 5px;
