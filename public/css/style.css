@@ -1,5 +1,6 @@
 body {
-  background-color: darkslategrey;
+  background-color: #2f4f4f;
+  background-image: url(../img/sky.jpg);
 }
 button, 
 button:active, 
@@ -18,8 +19,8 @@ button:focus {
     right: 10px;
     top: 10px;
   }
-  div.description input {
-    width: 110px;
+  div.description p {
+    font-style: italic;
   }
   .btnChange {
     color: black;
@@ -74,8 +75,8 @@ button:focus {
   #city{
     height: 173px;
     width: 200px;
-    background-color: bisque;
-      border-radius: 10px;
+    background-color: burlywood;
+    border-radius: 10px;
   }
   .text span{
     padding: 0 0 5px;
