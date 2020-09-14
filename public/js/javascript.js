@@ -223,7 +223,7 @@ class Controller {
   testLocalStorage(){
     if(localStorage.cityId === undefined || localStorage.cityId.join === undefined){ 
         this.model.getIdObjToArr();
-    }
+      }
   }
   testMongobd(){
       this.model.getData();
@@ -374,7 +374,7 @@ class Model {
             cityName: value,
           }),
           
-        });
+          });
       }catch(e){
         console.log('Error: ' + e.message);
         console.log(e.response);
