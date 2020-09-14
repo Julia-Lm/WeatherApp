@@ -365,36 +365,50 @@ class Model {
       }); 
   }
   createCity(value,index){
-    $.ajax({
-      url: "/cities",
-      contentType: "application/json",
-      method: "POST",
-      data: JSON.stringify({
-        cityName: value,
-      }),
-      
-    })
+      try{
+        $.ajax({
+          url: "/cities",
+          contentType: "application/json",
+          method: "POST",
+          data: JSON.stringify({
+            cityName: value,
+          }),
+          
+          });
+      }catch(e){
+        console.log('Error: ' + e.message);
+        console.log(e.response);
+      }
     
   }
   deleteCity(id){
-    $.ajax({
-      url: "/cities/"+id,
-      contentType: "application/json",
-      method: "DELETE",
-      
-    })
+    try{
+      $.ajax({
+        url: "/cities/"+id,
+        contentType: "application/json",
+        method: "DELETE",
+        
+      });
+    }catch(e){
+      console.log('Error: ' + e.message);
+      console.log(e.response);
+    }
   }
   putCity(value,id){
-   
-    $.ajax({
-      url: "/cities/"+id,
-      contentType: "application/json",
-      method: "PUT",
-      data: JSON.stringify({
-        cityName: value,
-      })
-      
-    })
+    try{ 
+      $.ajax({
+        url: "/cities/"+id,
+        contentType: "application/json",
+        method: "PUT",
+        data: JSON.stringify({
+          cityName: value,
+        })
+        
+      });
+    }catch(e){
+      console.log('Error: ' + e.message);
+      console.log(e.response);
+    }
   }
   
   getData(){
