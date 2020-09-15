@@ -222,8 +222,9 @@ class Controller {
 
   testLocalStorage(){
     if(localStorage.cityId === undefined || localStorage.cityId.join === undefined){ 
+      //this.model.setToLocalStorage();//
         this.model.getIdObjToArr();
-      }
+    }
   }
   testMongobd(){
       this.model.getData();
@@ -320,6 +321,8 @@ class Model {
         this.view = view;
         this.addCityWeatherView = addCityWeatherView;
         this.addCoursView = addCoursView;
+        //this.setToLocalStorage = this.setToLocalStorage.bind(this);
+       // this.addTask = this.addTask.bind(this);
   }
 
   addTask(value) {
@@ -353,7 +356,7 @@ class Model {
       if (data !== undefined){
           this.createCity(data.name,index);
           this.view.renderTask(data);
-          this.getIdObjTest(index);
+          this.getIdObj(index);
         }else{
           console.log("City has not found! Try another city!");
           console.log('Не верно введено название города');
@@ -364,17 +367,22 @@ class Model {
           console.log(e.response);
       }); 
   }
-  createCity(value,index){
+  createCity(value){
       try{
         $.ajax({
-          url: "/cities",
+          url: "/cities/add",
           contentType: "application/json",
           method: "POST",
           data: JSON.stringify({
             cityName: value,
           }),
+          success: function (city) {
+           this.task = JSON.parse(localStorage.getItem('cityId'));
+           this.task.push(city._id);
+           localStorage.setItem('cityId', JSON.stringify(this.task));
+         }
           
-          });
+        });
       }catch(e){
         console.log('Error: ' + e.message);
         console.log(e.response);
@@ -433,35 +441,7 @@ class Model {
   }); 
   }
 
-  getIdObjTest(index){
-    fetch('/cities').then((response) => {  
-    if (response.status !== 200) {  
-      console.log('Looks like there was a problem. Status Code: ' + 
-        response.status);  
-    }else{
-     return response.json()
-    }
-    })
-    .then(data =>{
-      
-      if(data.length !== 0) {
-        data.forEach((elem,idx) => {
-          if(idx === index){
-            this.addTask(elem._id);
-            this.setToLocalStorage();
-          }
-        });
-      }else{
-       
-        this.getIdObj(index);
-      }   
-      
-    })
-    .catch((e) => {
-      console.log('Error: ' + e.message);
-      console.log(e.response);
-  }); 
-  }
+
   getIdObj(index){
     fetch('/cities').then((response) => {  
     if (response.status !== 200) {  
@@ -472,6 +452,7 @@ class Model {
     }
     })
     .then(data =>{
+      this.setToLocalStorage();
       data.forEach((elem,idx) => {
         if(idx === index){
           this.addTask(elem._id);

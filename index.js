@@ -43,11 +43,11 @@ app.get('/cities',(req, res) => {
             console.log(err);
             return res.sendStatus(500);
         }
-        console.log(res.send(docs));
+        res.send(docs);
     })
 });
 
-app.post('/cities',(req, res) => {
+app.post('/cities/add',(req, res) => {
     let city = {
         cityName: req.body.cityName
     }
@@ -56,6 +56,7 @@ app.post('/cities',(req, res) => {
         console.log(err);
         return res.sendStatus(500);
        }
+       res.send(city);
    })
 });
 
