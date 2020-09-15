@@ -222,7 +222,6 @@ class Controller {
 
   testLocalStorage(){
     if(localStorage.cityId === undefined || localStorage.cityId.join === undefined){ 
-      //this.model.setToLocalStorage();//
         this.model.getIdObjToArr();
     }
   }
@@ -321,8 +320,6 @@ class Model {
         this.view = view;
         this.addCityWeatherView = addCityWeatherView;
         this.addCoursView = addCoursView;
-        //this.setToLocalStorage = this.setToLocalStorage.bind(this);
-       // this.addTask = this.addTask.bind(this);
   }
 
   addTask(value) {
