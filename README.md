@@ -4,7 +4,7 @@ Available Scripts
 In the project directory, you can run:
 
 
-npm instal
+npm install
 
 npm run dev
 
